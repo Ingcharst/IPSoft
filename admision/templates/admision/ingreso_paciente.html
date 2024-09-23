@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Ingreso de Paciente{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Ingreso de Paciente</h2>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="id_nombre" name="nombre" required>
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.documento.id_for_label }}" class="form-label">Documento</label>
+            <input type="text" class="form-control" id="id_documento" name="documento" required>
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.fecha_nacimiento.id_for_label }}" class="form-label">Fecha de Nacimiento</label>
+            <input type="text" class="form-control" id="id_fecha_nacimiento" name="fecha_nacimiento" required>
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.sexo.id_for_label }}" class="form-label">Sexo</label>
+            <input type="text" class="form-control" id="id_sexo" name="sexo" required>
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.direccion.id_for_label }}" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="id_direccion" name="direccion">
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.telefono.id_for_label }}" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="id_telefono" name="telefono">
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.motivo_ingreso.id_for_label }}" class="form-label">Motivo de Ingreso</label>
+            <input type="text" class="form-control" id="id_motivo_ingreso" name="motivo-ingreso" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Registrar Paciente</button>
+    </form>
+<!--
+    {{ form.nombre }}
+    {{ form.documento }}
+    {{ form.fecha_nacimiento }}
+    {{ form.sexo }}
+    {{ form.direccion }}
+    {{ form.telefono }}
+    {{ form.motivo_ingreso }}
+-->
+</div>
+{% endblock %}

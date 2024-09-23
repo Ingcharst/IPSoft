@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Home IPSoft{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Estado Actual de la Clínica</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <canvas id="estadoChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Datos de los pacientes
+        var estadoCounts = JSON.parse('{{ estado_counts|safe }}');
+        
+        var ctx = document.getElementById('estadoChart').getContext('2d');
+
+        var estadoChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                //labels: ['En Atención', 'En Observación', 'En Espera de Atención', 'En Espera de Triage'],
+                labels: Object.keys(estadoCounts),
+                datasets: [{
+                    label: 'Número de Pacientes',
+                    data: Object.values(estadoCounts), 
+/*                    [
+                        estadoCounts['atencion'] || 0,
+                        estadoCounts['observacion'] || 0,
+                        estadoCounts['espera_atencion'] || 0,
+                        estadoCounts['espera_triage'] || 0
+                    ],*/
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock %}
+</html>
